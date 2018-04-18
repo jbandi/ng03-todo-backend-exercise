@@ -6,8 +6,8 @@ import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {map, filter, catchError} from 'rxjs/operators'; // pipeable operators are new since RxJS 5.5
 
-const backendUrl = 'http://localhost:3456/todos';
-// const backendUrl = 'https://jba-todo-1.now.sh/api/todos';
+// const backendUrl = 'http://localhost:3456/todos';
+const backendUrl = 'https://jba-todo-1.now.sh/api/todos';
 
 @Injectable()
 export class ToDoService {
