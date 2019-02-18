@@ -5,7 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {map, catchError} from 'rxjs/operators'; // pipeable operators are new since RxJS 5.5
 
-const backendUrl = 'http://localhost:3456/todos';
+// const backendUrl = 'http://localhost:3456/todos';
+const backendUrl = 'https://jba-todo.now.sh/api/todos';
 
 interface ToDoGetResponse { data: ToDo[]; }
 
@@ -16,7 +17,8 @@ export class ToDoService {
   }
 
   getTodos(completed?: boolean): Observable<ToDo[]> {
-    const requestUrl = backendUrl + (completed !== undefined ? `?completed=${completed}` : '');
+    const completParam = completed ? 1 : 0;
+    const requestUrl = backendUrl + (completed !== undefined ? `?completed=${completParam}` : '');
     return this.http.get<ToDoGetResponse>(requestUrl)
       .pipe(
         map(response => response.data),
