@@ -2,28 +2,27 @@ import {Injectable} from '@angular/core';
 import {ToDo} from './todo.model';
 import {HttpClient} from '@angular/common/http';
 
-import {Observable} from 'rxjs/Observable';
-import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {map, filter, catchError} from 'rxjs/operators'; // pipeable operators are new since RxJS 5.5
+import {Observable, throwError} from 'rxjs';
+import {map, catchError} from 'rxjs/operators'; // pipeable operators are new since RxJS 5.5
 
-// const backendUrl = 'http://localhost:3456/todos';
-const backendUrl = 'https://jba-todo-1.now.sh/api/todos';
+const backendUrl = 'http://localhost:3456/todos';
 
-@Injectable()
+interface ToDoGetResponse { data: ToDo[]; }
+
+@Injectable({providedIn: 'root'})
 export class ToDoService {
 
   constructor(private http: HttpClient) {
   }
 
-  getTodos(): Observable<ToDo[]> {
-    return this.http.get<{data: ToDo[]}>(backendUrl)
+  getTodos(completed?: boolean): Observable<ToDo[]> {
+    const requestUrl = backendUrl + (completed !== undefined ? `?completed=${completed}` : '');
+    return this.http.get<ToDoGetResponse>(requestUrl)
       .pipe(
+        map(response => response.data),
         map(
-          (res) => res.data.map((r) => {
-            const todo = new ToDo(r.title);
-            todo.completed = r.completed;
-            todo.id = r.id;
-            return todo;
+          todosArrayData => todosArrayData.map((todoData) => {
+            return ToDo.createFromJson(todoData);
           })),
         catchError(this.handleError)
       );
@@ -31,20 +30,23 @@ export class ToDoService {
 
   saveTodo(todo: ToDo) {
     // TODO: Part of the exercise
+    console.log('Not yet implemented ...');
   }
 
   updateTodo(todo: ToDo) {
     // TODO: Part of the exercise
+    console.log('Not yet implemented ...');
   }
 
   deleteTodo(todo: ToDo) {
     // TODO: Part of the exercise
+    console.log('Not yet implemented ...');
   }
 
   private handleError(error: any) {
     const errMsg = error.message || 'Server error';
     console.error(errMsg);
-    return ErrorObservable.create(errMsg);
+    return throwError(errMsg);
   }
 
 }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {OverviewComponent} from './todos/components/overview/overview.component';
-import {DoneTodosComponent} from './todos/components/done-todos/done-todos.component';
+import {TodoScreenComponent} from './todos/components/todo-screen/todo-screen.component';
+import {DoneScreenComponent} from './todos/components/done-screen/done-screen.component';
 
 const routes: Routes = [
-  { path: '', component: OverviewComponent },
-  { path: 'done', component: DoneTodosComponent }
+  { path: '', component: TodoScreenComponent },
+  { path: 'done', component: DoneScreenComponent }
 ];
 
 @NgModule({

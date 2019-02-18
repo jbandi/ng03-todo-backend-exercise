@@ -34,6 +34,40 @@ body {
   font-weight: 300;
 }
 
+
+.todoapp-header h1 {
+  top: -140px;
+  width: 100%;
+  font-size: 70px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.35);
+}
+
+.todoapp-header h4 {
+  font-size: 25px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.55);
+}
+
+.nav {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.nav a {
+  padding: 20px;
+  cursor: pointer;
+}
+
+a.selected {
+  font-weight: bold;
+  cursor: default;
+  text-decoration: none;
+}
+
+
 .todoapp input::-webkit-input-placeholder {
   font-style: italic;
   font-weight: 300;
@@ -74,6 +108,13 @@ body {
   color: rgba(175, 47, 47, 0.55);
 }
 
+.loading-placeholder{
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .new-todo {
   display: flex;
   padding: 1px 20px 1px 20px;
@@ -112,7 +153,10 @@ body {
   width: 80%;
 }
 
-.main {
+.todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   background: #fff;
   position: relative;
   z-index: 2;
@@ -121,14 +165,10 @@ body {
   0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
-.todo-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 .todo-list li {
-  position: relative;
+  /*position: relative;*/
+  display: flex;
+  align-items : center;
   font-size: 24px;
   border-bottom: 1px solid #ededed;
   padding: 20px
@@ -146,12 +186,19 @@ body {
 .remove-button{
   /*display: block;*/
   float:right;
+  margin-left: auto;
 
   /*margin: auto 0;*/
-  font-size: 40px;
+  font-size: 24px;
   color: #cc9a9a;
-  margin-top: -20px;
 }
+
+/*button.remove-button{*/
+/*margin-top: -20px;*/
+/*}*/
+/*div.remove-button{*/
+/*margin-top: -10px;*/
+/*}*/
 
 
 .add-button:hover:not([disabled]) {

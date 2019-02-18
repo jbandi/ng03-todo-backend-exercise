@@ -7,4 +7,10 @@ export class ToDo {
     this.completed = false;
     this.title = title.trim();
   }
+
+  static createFromJson(jsonData): ToDo {
+    const newToDo = new ToDo();
+    return Object.assign(newToDo, jsonData);
+  }
+
 }
